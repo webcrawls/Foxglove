@@ -1,0 +1,3 @@
+# foxglove
+
+A Discord bot.
