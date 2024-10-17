@@ -1,2 +1,2 @@
-class User:
+class FoxUser:
     pass

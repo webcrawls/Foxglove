@@ -1,9 +1,10 @@
 import os
 from dotenv import load_dotenv
-import client
+from client import Foxglove
+from db.local import LocalBotDatabase
 import asyncio
 load_dotenv()
 
 DISCORD_BOT_TOKEN = os.getenv("TOKEN")
-
-client.run_foxglove(DISCORD_BOT_TOKEN)
+bot = Foxglove(LocalBotDatabase("local.db"))
+bot.run_foxglove(DISCORD_BOT_TOKEN)
