@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 from .database import BotDatabase
 
 class LocalBotDatabase(BotDatabase):
@@ -7,7 +8,11 @@ class LocalBotDatabase(BotDatabase):
         self._connect_db()
 
     def create_guild(self, guild_id) -> bool:
-        pass # TODO TODO
+        stmt = """INSERT INTO guilds (guild_id, created, settings, meta, users) VALUES (?, ?, ?, ?, ?);"""
+        con = self._get_connection()
+        con.execute(stmt, [guild_id, str(datetime.datetime.now()), "{}", "{}", "[]"])
+        con.commit() # IMPORTANT!!!!
+        con.close()
         # return super().create_guild(guild_id)
     
     def guild_exists(self, guild_id) -> bool:
@@ -15,7 +20,9 @@ class LocalBotDatabase(BotDatabase):
         con = self._get_connection()
         res = con.execute(stmt, [guild_id])
         if len(res.fetchall()) == 0:
+            con.close()
             return False
+        con.close()
         return True
     
     def user_exists(self, user_id) -> bool:
@@ -38,6 +45,7 @@ class LocalBotDatabase(BotDatabase):
                                                      users TEXT);
         """
         con.execute(stmt)
+        con.close()
 
     def _setup_users_table(self, con):
         # stmt = """CREATE TABLE IF NOT EXISTS users (guild_id TEXT PRIMARY KEY,
