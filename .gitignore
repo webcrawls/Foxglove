@@ -12,3 +12,4 @@ pyvenv.cfg
 env
 .env
 pip-selfcheck.json
+*.pyc
