@@ -12,3 +12,6 @@ class BotDatabase:
     
     def create_guild(self, guild_id):
         return False
+    
+    def get_guild_data(self, guild_id, name) -> object:
+        return None
