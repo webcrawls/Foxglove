@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
-from db.database import BotDatabase
-from db.decorators import guild_setup
+from storage.adapter import StorageAdapter
+from util.decorators import guild_setup
 from .module import Module
 
 class TagsModule(Module):

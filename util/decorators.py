@@ -1,5 +1,5 @@
 import discord
-from db.database import BotDatabase
+from storage.adapter import StorageAdapter
 
 def ignore_own_message(func):
     def wrapped(*args, **kwargs):
@@ -9,7 +9,7 @@ def ignore_own_message(func):
 def guild_setup(warn: bool=False, error: bool=True, invert: bool=False):
     def wrapper(func):
         async def wrapped(*ctx, **kwargs):
-            db: BotDatabase = ctx[0].bot.db
+            db: StorageAdapter = ctx[0].bot.db
             guild = ctx[0].guild
             guild_exists = db.guild_exists(str(guild.id))
 

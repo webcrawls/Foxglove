@@ -1,8 +1,8 @@
 import sqlite3
 import datetime
-from .database import BotDatabase
+from .adapter import StorageAdapter
 
-class LocalBotDatabase(BotDatabase):
+class LocalStorage(StorageAdapter):
     def __init__(self, path: str):
         self.path = path
         self._connect_db()
