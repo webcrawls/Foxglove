@@ -9,8 +9,5 @@ class StorageAdapter:
     async def save_guild(guild: FoxGuild) -> Optional[bool]:
         pass
 
-    async def load_guild_data(id: str, name: str) -> Optional[object]:
-        pass
-
-    async def save_guild_data(id: str, name: str, data: object) -> Optional[object]:
+    async def save_tag(guild_id: str, tag_name: str):
         pass

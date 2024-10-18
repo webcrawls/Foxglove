@@ -1,4 +1,4 @@
-from db.decorators import guild_setup
+from util.decorators import guild_setup
 from .module import Module
 import discord
 from discord.ext.commands import has_permissions

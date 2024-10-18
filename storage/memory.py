@@ -3,7 +3,6 @@ from core.guild import FoxGuild
 from typing import Optional
 
 class MemoryAdapter(StorageAdapter):
-
     def __init__(self):
         self.guilds = {}
     
@@ -14,9 +13,3 @@ class MemoryAdapter(StorageAdapter):
 
     async def save_guild(self, guild: FoxGuild) -> Optional[bool]:
         self.guilds[guild.id] = guild
-
-    async def load_guild_data(self, id: str, name: str) -> Optional[object]:
-        pass
-
-    async def save_guild_data(self, id: str, name: str, data: object) -> Optional[object]:
-        pass

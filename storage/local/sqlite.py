@@ -1,6 +1,6 @@
 import sqlite3
 import datetime
-from .adapter import StorageAdapter
+from ..adapter import StorageAdapter
 
 class LocalStorage(StorageAdapter):
     def __init__(self, path: str):
@@ -38,20 +38,11 @@ class LocalStorage(StorageAdapter):
         con.close()
 
     def _setup_guilds_table(self, con):
-        stmt = """CREATE TABLE IF NOT EXISTS guilds (guild_id TEXT PRIMARY KEY,
-                                                     created TEXT,
-                                                     settings TEXT,
-                                                     meta TEXT,
-                                                     users TEXT);
-        """
-        con.execute(stmt)
+        with open("storage/local/sql/guild_schema.sql") as fp:
+            con.executescript(fp.read())
         con.close()
 
     def _setup_users_table(self, con):
-        # stmt = """CREATE TABLE IF NOT EXISTS users (guild_id TEXT PRIMARY KEY,
-        #                                             created TEXT,
-        #                                             settings TEXT,
-        #                                             meta TEXT);
-        # """
-        # con.execute(stmt)
-        pass
+        with open("storage/local/sql/guild_schema.sql") as fp:
+            con.executescript(fp.read())
+        con.close()
